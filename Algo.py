@@ -1,4 +1,4 @@
-def main() :
+def main():
 
     while True:
             m = int(input("Enter the number of memory partitions: "))
@@ -22,22 +22,40 @@ def main() :
         size = int(input("Enter the size of the memory partition " + str(i+1) + ":"))
         arrsize.append(size)
 
-    while True:
-        for i in range(n):
-            k = int(input("Enter the number of pairs: "))
-            if 0 > k or k > 10:
-                print("Value should be in 1-10")
-                continue
-            for x in range(k):
-                arrx = [[]]
-                s = int(input("Enter the size of " + str(i+1) + "program: "))
-                arrx.append(s)
-                t = int(input("Enter the time of " + str(i+1) + "program"))
-                arrx.append(t)
+    arrayx = [[0] for y in range(n)]
+
+    for i in range(n):
+            while True:
+                k = int(input("Enter the number of pairs: "))
+                if 1 > k or k > 10:
+                    print("Value should be in 1-10")
+                    continue
+                break
+
+            arrayx[i][0] = k
+            for j in range(k):
+                s = int(input("Enter the size of program " + str(i+1) + ": "))
+                t = int(input("Enter the time of program " + str(i+1) + ": "))
+                arrayx[i].append(s)
+                arrayx[i].append(t)
+
+            if k == 1:
+                min_time1 = arrayx[0][2]
+            else:
+                min_time1 = arrayx[0][2]
+                for i in range(k):
+                    if min_time1 > arrayx[0][(i+1)*2]:
+                        min_time1 = arrayx[0][(i+1)*2]
 
 
 
 
+
+
+    # print(arrayx[0][1])
+    # print(arrsize[1])
+    print(min_time1)
+    # print(list.index(min_time1))
 
 
 
