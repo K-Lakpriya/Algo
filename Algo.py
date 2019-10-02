@@ -22,8 +22,8 @@ def main():
         size = int(input("Enter the size of the memory partition " + str(i+1) + ":"))
         arrsize.append(size)
 
-    arrayx = [[0] for y in range(n)]
-    time = []
+    arrayx = [[] for y in range(n)]
+
     for i in range(n):
             while True:
                 k = int(input("Enter the number of pairs: "))
@@ -32,43 +32,34 @@ def main():
                     continue
                 break
 
-            arrayx[i][0] = k
-            for j in range(k):
-                s = int(input("Enter the size of program " + str(i+1) + ": "))
-                t = int(input("Enter the time of program " + str(i+1) + ": "))
-                arrayx[i].append(s)
-                arrayx[i].append(t)
-                # print(time)
+            if k > 1:
+                arraytemp = [[] for y in range(k)]
+                for j in range(k):
+                    s = int(input("Enter the size of program " + str(i + 1) + ": "))
+                    t = int(input("Enter the time of program " + str(i + 1) + ": "))
+                    arraytemp[j].append(s)
+                    arraytemp[j].append(t)
 
-            if k == 1:
-                min_time1 = arrayx[i][2]
-                d_size = arrayx[i][1]
-                time.append(t)
-            else:
-                min_time1 = arrayx[i][2]
-                d_size = arrayx[i][1]
-                for q in range(k):
-                    if min_time1 >= arrayx[i][(q+1)*2]:
-                        min_time1 = arrayx[i][(q+1)*2]
-                        d_size = arrayx[i][(q+1)*2-1]
-                        # for poped in range(k):
-                # time.pop()
-                time.append(min_time1)
-            print(min_time1)
-            print(d_size)
+                def takeSecond(elem):
+                    return elem[1]
 
-            for z in range(len(time)):
-                cursor = time[z]
-                pos = z
+                arraytemp.sort(key=takeSecond)
 
-                while pos > 0 and time[pos - 1] > cursor:
-                    # Swap the number down the list
-                    time[pos] = time[pos - 1]
-                    pos = pos - 1
-                # Break and do the final swap
-                time[pos] = cursor
+                arrayx[i] = arraytemp[0]
+                del arraytemp[:]
 
-    print(time)
+            elif k == 1:
+                for j in range(k):
+                    s = int(input("Enter the size of program " + str(i + 1) + ": "))
+                    t = int(input("Enter the time of program " + str(i + 1) + ": "))
+                    arrayx[i].append(s)
+                    arrayx[i].append(t)
+
+    def takeSecond(elem):
+        return elem[1]
+
+    print(arrayx.sort(key=takeSecond))
+    print(arrayx)
 
 
 main()
