@@ -23,7 +23,7 @@ def main():
         arrsize.append(size)
 
     arrayx = [[] for y in range(n)]
-
+    dupli_arrayx = [[0 for q in range(2)] for y in range(n)]
     for i in range(n):
             while True:
                 k = int(input("Enter the number of pairs: "))
@@ -44,7 +44,6 @@ def main():
                     return elem[1]
 
                 arraytemp.sort(key=takeSecond)
-
                 arrayx[i] = arraytemp[0]
                 del arraytemp[:]
 
@@ -55,11 +54,17 @@ def main():
                     arrayx[i].append(s)
                     arrayx[i].append(t)
 
+    for i in range(n):
+        for j in range(2):
+            dupli_arrayx[i][j] = arrayx[i][j]
+
     def takeSecond(elem):
         return elem[1]
 
-    print(arrayx.sort(key=takeSecond))
-    print(arrayx)
+    dupli_arrayx.sort(key=takeSecond)
+    print(dupli_arrayx)
+
+    print("second", arrayx)
 
 
 main()
